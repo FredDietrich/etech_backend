@@ -1,6 +1,6 @@
 - Para criar uma migration:
 ```bash
-dotnet ef migrations add InitialCreate 
+dotnet ef migrations add nomeDaMigration 
 ```
 
 - Para rodar uma migration:
