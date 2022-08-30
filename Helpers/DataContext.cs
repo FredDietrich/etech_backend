@@ -16,6 +16,12 @@ public class DataContext : DbContext
         options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
     }
 
+    public DbSet<Categoria>? Categorias { get; set; }
+    public DbSet<Compra>? Compras { get; set; }
+    public DbSet<Email>? Emails { get; set; }
+    public DbSet<Endereco>? Enderecos { get; set; }
+    public DbSet<Favorito>? Favoritos { get; set; }
+    public DbSet<Produto>? Telefone { get; set; }
     public DbSet<Usuario>? Usuarios { get; set; }
-    
+
 }
