@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Etech.Entidades;
 
-public class Favorito
+public class Carrinho 
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int IdFavorito { get; set; }
+    public int IdCarrinho { get; set; }
 }

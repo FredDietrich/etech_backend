@@ -13,12 +13,13 @@ public class Compra
     public int IdVendedor { get; set; }
 
     [Required]
-    public int Quantidade { get; set; }
-
-    [Required]
+    [DataType(DataType.DateTime)]
+    [Display(Name = "Data Compra")]
     public DateTime Data { get; set; }
 
     [Required]
+    [StringLength(30, ErrorMessage = "O status deve possuir no máximo 30 caracteres")]
     public String? Status { get; set; }
-    public Double Desconto { get; set; }
+    
+    public Double ValorTotal { get; set; }
 }

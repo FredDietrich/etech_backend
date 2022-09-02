@@ -9,9 +9,10 @@ public class Categoria
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdCategoria { get; set; }
 
-    [StringLength(45, ErrorMessage = "O nome da categoria deve possuir até 45 caracteres")]
+    [Required]
+    [StringLength(50, ErrorMessage = "O nome da categoria deve possuir até 50 caracteres")]
     public String? Nome { get; set; }
 
-    [StringLength(45, ErrorMessage = "A descrição da categoria deve possuir até 45 caracteres")]
+    [StringLength(255, ErrorMessage = "A descrição da categoria deve possuir até 255 caracteres")]
     public String? Descricao { get; set; }
 }
