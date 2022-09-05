@@ -16,6 +16,31 @@ public class DataContext : DbContext
         options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<CarrinhoProduto>()
+            .HasKey(cp => new { cp.IdCompra, cp.IdProduto });
+        modelBuilder.Entity<CarrinhoProduto>()
+            .HasOne(cp => cp.Compra)
+            .WithMany(c => c.ProdutosCarrinho)
+            .HasForeignKey(cp => cp.IdCompra);
+        modelBuilder.Entity<CarrinhoProduto>()
+            .HasOne(cp => cp.Produto)
+            .WithMany(p => p.ProdutosCarrinho)
+            .HasForeignKey(cp => cp.IdProduto);
+            
+        modelBuilder.Entity<CompraProduto>()
+            .HasKey(cp => new { cp.IdCompra, cp.IdProduto });
+        modelBuilder.Entity<CompraProduto>()
+            .HasOne(cp => cp.Compra)
+            .WithMany(c => c.ProdutosCompra)
+            .HasForeignKey(cp => cp.IdCompra);
+        modelBuilder.Entity<CompraProduto>()
+            .HasOne(cp => cp.Produto)
+            .WithMany(p => p.ProdutosCompra)
+            .HasForeignKey(cp => cp.IdProduto);
+    }
+
     public DbSet<Carrinho>? Carrinhos { get; set; }
     public DbSet<CarrinhoProduto>? CarrinhoProdutos { get; set; }
     public DbSet<Categoria>? Categorias { get; set; }
@@ -24,7 +49,7 @@ public class DataContext : DbContext
     public DbSet<Email>? Emails { get; set; }
     public DbSet<Endereco>? Enderecos { get; set; }
     public DbSet<Favorito>? Favoritos { get; set; }
-    public DbSet<Produto>? Telefone { get; set; }
+    public DbSet<Produto>? Produtos { get; set; }
     public DbSet<Telefone>? Telefones { get; set; }
     public DbSet<Usuario>? Usuarios { get; set; }
 }

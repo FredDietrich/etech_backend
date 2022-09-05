@@ -24,24 +24,24 @@ namespace etech_backend.Controllers
 
         // GET: api/Produtos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Produto>>> GetTelefone()
+        public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
         {
-          if (_context.Telefone == null)
+          if (_context.Produtos == null)
           {
               return NotFound();
           }
-            return await _context.Telefone.ToListAsync();
+            return await _context.Produtos.ToListAsync();
         }
 
         // GET: api/Produtos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Produto>> GetProduto(int id)
         {
-          if (_context.Telefone == null)
+          if (_context.Produtos == null)
           {
               return NotFound();
           }
-            var produto = await _context.Telefone.FindAsync(id);
+            var produto = await _context.Produtos.FindAsync(id);
 
             if (produto == null)
             {
@@ -87,11 +87,11 @@ namespace etech_backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Produto>> PostProduto(Produto produto)
         {
-          if (_context.Telefone == null)
+          if (_context.Produtos == null)
           {
-              return Problem("Entity set 'DataContext.Telefone'  is null.");
+              return Problem("Entity set 'DataContext.Produtos'  is null.");
           }
-            _context.Telefone.Add(produto);
+            _context.Produtos.Add(produto);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetProduto", new { id = produto.IdProduto }, produto);
@@ -101,17 +101,17 @@ namespace etech_backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduto(int id)
         {
-            if (_context.Telefone == null)
+            if (_context.Produtos == null)
             {
                 return NotFound();
             }
-            var produto = await _context.Telefone.FindAsync(id);
+            var produto = await _context.Produtos.FindAsync(id);
             if (produto == null)
             {
                 return NotFound();
             }
 
-            _context.Telefone.Remove(produto);
+            _context.Produtos.Remove(produto);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -119,7 +119,20 @@ namespace etech_backend.Controllers
 
         private bool ProdutoExists(int id)
         {
-            return (_context.Telefone?.Any(e => e.IdProduto == id)).GetValueOrDefault();
+            return (_context.Produtos?.Any(e => e.IdProduto == id)).GetValueOrDefault();
         }
+
+        [HttpGet("lista")]
+        public async Task<ActionResult<IEnumerable<Produto>>> ListaProdutos([FromQuery] int? limite, [FromQuery] ICollection<int>? categorias, [FromQuery] String? ordenaPor, [FromQuery] String? ordem)
+        {
+          if (_context.Produtos == null)
+          {
+              return NotFound();
+          }
+            Console.WriteLine(limite + " " + categorias.ToArray()[0]);
+            return await _context.Produtos.ToListAsync();
+        }
+
     }
+
 }

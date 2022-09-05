@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace etech_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220905222914_criaBanco")]
+    partial class criaBanco
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,15 +193,10 @@ namespace etech_backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProdutoIdProduto")
-                        .HasColumnType("int");
-
                     b.Property<int?>("UsuarioIdUsuario")
                         .HasColumnType("int");
 
                     b.HasKey("IdFavorito");
-
-                    b.HasIndex("ProdutoIdProduto");
 
                     b.HasIndex("UsuarioIdUsuario");
 
@@ -219,6 +216,9 @@ namespace etech_backend.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
+                    b.Property<int?>("FavoritoIdFavorito")
+                        .HasColumnType("int");
+
                     b.Property<double>("Preco")
                         .HasColumnType("double");
 
@@ -231,6 +231,8 @@ namespace etech_backend.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.HasKey("IdProduto");
+
+                    b.HasIndex("FavoritoIdFavorito");
 
                     b.ToTable("Produtos");
                 });
@@ -352,15 +354,16 @@ namespace etech_backend.Migrations
 
             modelBuilder.Entity("Etech.Entidades.Favorito", b =>
                 {
-                    b.HasOne("Etech.Entidades.Produto", "Produto")
-                        .WithMany()
-                        .HasForeignKey("ProdutoIdProduto");
-
                     b.HasOne("Etech.Entidades.Usuario", null)
                         .WithMany("Favoritos")
                         .HasForeignKey("UsuarioIdUsuario");
+                });
 
-                    b.Navigation("Produto");
+            modelBuilder.Entity("Etech.Entidades.Produto", b =>
+                {
+                    b.HasOne("Etech.Entidades.Favorito", null)
+                        .WithMany("Produtos")
+                        .HasForeignKey("FavoritoIdFavorito");
                 });
 
             modelBuilder.Entity("Etech.Entidades.Telefone", b =>
@@ -375,6 +378,11 @@ namespace etech_backend.Migrations
                     b.Navigation("ProdutosCarrinho");
 
                     b.Navigation("ProdutosCompra");
+                });
+
+            modelBuilder.Entity("Etech.Entidades.Favorito", b =>
+                {
+                    b.Navigation("Produtos");
                 });
 
             modelBuilder.Entity("Etech.Entidades.Produto", b =>

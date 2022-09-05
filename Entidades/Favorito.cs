@@ -9,6 +9,6 @@ public class Favorito
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdFavorito { get; set; }
 
-    public List<Produto>? Produtos { get; set; }
+    public Produto? Produto { get; set; }
 
 }

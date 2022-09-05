@@ -18,12 +18,12 @@ namespace etech_backend.Controllers
     {
         private readonly DataContext _context;
 
-        private IUsuarioBLL _usuarioBLL;
+        private readonly IUsuarioBLL _usuarioBLL;
 
-        public UsuariosController(DataContext context, IUsuarioBLL usuarioBLL)
+        public UsuariosController(DataContext context)
         {
             _context = context;
-            _usuarioBLL = usuarioBLL;
+            _usuarioBLL = new UsuarioBLL(context);
         }
 
         // GET: api/Usuarios
@@ -137,7 +137,6 @@ namespace etech_backend.Controllers
 
             return Ok(usuario);
         }
-
 
     }
 }

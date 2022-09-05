@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Etech.Entidades;
 
+[Table(name: "Produtos")]
 public class Produto
 {
     [Key]
@@ -23,4 +24,9 @@ public class Produto
     public int QtdEstoque { get; set; }
 
     public Double Desconto { get; set; }
+
+    public ICollection<CarrinhoProduto>? ProdutosCarrinho { get; set; }
+
+    public ICollection<CompraProduto>? ProdutosCompra  { get; set; }
+
 }

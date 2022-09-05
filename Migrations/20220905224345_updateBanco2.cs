@@ -4,7 +4,7 @@
 
 namespace etech_backend.Migrations
 {
-    public partial class UpdateBanco1 : Migration
+    public partial class updateBanco2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -33,8 +33,8 @@ public class Usuario
 
     public List<Endereco>? Enderecos { get; set; }
 
-    public List<Favorito>? Favoritos { get; set; }
-
     public List<Compra>? Compras { get; set; }
+
+    public ICollection<Favorito>? Favoritos { get; set; }
 
 }

@@ -23,6 +23,8 @@ public class Compra
     
     public Double ValorTotal { get; set; }
 
-    public List<Produto>? Produtos { get; set; }
+    public ICollection<CarrinhoProduto>? ProdutosCarrinho { get; set; }
+
+    public ICollection<CompraProduto>? ProdutosCompra { get; set; }
 
 }
