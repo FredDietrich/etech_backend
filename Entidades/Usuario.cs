@@ -27,4 +27,14 @@ public class Usuario
     public String? Cpf { get; set; }
     
     public Boolean Vendedor { get; set; } = false;
+    public List<Email>? Emails { get; set; }
+
+    public List<Telefone>? Telefones { get; set; }
+
+    public List<Endereco>? Enderecos { get; set; }
+
+    public List<Favorito>? Favoritos { get; set; }
+
+    public List<Compra>? Compras { get; set; }
+
 }

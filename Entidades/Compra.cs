@@ -22,4 +22,7 @@ public class Compra
     public String? Status { get; set; }
     
     public Double ValorTotal { get; set; }
+
+    public List<Produto>? Produtos { get; set; }
+
 }
