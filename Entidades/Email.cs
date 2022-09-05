@@ -10,7 +10,7 @@ public class Email
     public int IdEmail { get; set; }
 
     [Required]
-    [StringLength(45)]
+    [StringLength(50, ErrorMessage = "O e-mail deve ter no máximo 50 caracteres")]
     [EmailAddress(ErrorMessage = "Informe um e-mail válido!")]
     public String? EnderecoEmail { get; set; }
 }

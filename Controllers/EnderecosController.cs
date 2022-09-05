@@ -56,7 +56,7 @@ namespace etech_backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEndereco(int id, Endereco endereco)
         {
-            if (id != endereco.idEndereco)
+            if (id != endereco.IdEndereco)
             {
                 return BadRequest();
             }
@@ -94,7 +94,7 @@ namespace etech_backend.Controllers
             _context.Enderecos.Add(endereco);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetEndereco", new { id = endereco.idEndereco }, endereco);
+            return CreatedAtAction("GetEndereco", new { id = endereco.IdEndereco }, endereco);
         }
 
         // DELETE: api/Enderecos/5
@@ -119,7 +119,7 @@ namespace etech_backend.Controllers
 
         private bool EnderecoExists(int id)
         {
-            return (_context.Enderecos?.Any(e => e.idEndereco == id)).GetValueOrDefault();
+            return (_context.Enderecos?.Any(e => e.IdEndereco == id)).GetValueOrDefault();
         }
     }
 }

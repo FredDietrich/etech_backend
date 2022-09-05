@@ -9,11 +9,18 @@ public class Produto
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdProduto { get; set; }
 
-    [StringLength(255, ErrorMessage = "O título deve possuir até 255 caracteres")]
+    [Required]
+    [StringLength(100, ErrorMessage = "O título deve possuir até 100 caracteres")]
     public String? Titulo { get; set; }
 
     [StringLength(255, ErrorMessage = "A descricao da categoria deve possuir até 255 caracteres")]
     public String? Descricao { get; set; }
+
+    [Required]
     public Double Preco { get; set; }
-    public int QtEstoque { get; set; }
+
+    [Required]
+    public int QtdEstoque { get; set; }
+
+    public Double Desconto { get; set; }
 }

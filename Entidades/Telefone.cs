@@ -9,13 +9,10 @@ public class Telefone
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdTelefone { get; set; }
     
-    [Required]
-    [StringLength(2, ErrorMessage = "O telefone deve conter um DDD!")]
-    public String? Ddd { get; set; }
+    [Range(11, 99, ErrorMessage = "O DDD deve ser preenchido com um valor entre 11 e 99")]
+    public int Ddd { get; set; }
 
     [Required]
-    [StringLength(9, ErrorMessage = "O telefone deve conter um número com no mínimo 8 dígitos e no máximo 9!", MinimumLength = 8)]
-    public String? Numero { get; set; }
-
-
+    [Range(11111111, 999999999, ErrorMessage = "O telefone deve ter de 8 a 9 dígitos")]
+    public int Numero { get; set; }
 }
