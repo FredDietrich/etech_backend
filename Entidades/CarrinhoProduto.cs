@@ -4,9 +4,9 @@ namespace Etech.Entidades;
 
 public class CarrinhoProduto
 {
-    public int IdCompra { get; set; }
+    public int IdCarrinho { get; set; }
 
-    public Compra? Compra { get; set; }
+    public Carrinho? Carrinho { get; set; }
 
     public int IdProduto { get; set; }
 

@@ -19,11 +19,11 @@ public class DataContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<CarrinhoProduto>()
-            .HasKey(cp => new { cp.IdCompra, cp.IdProduto });
+            .HasKey(cp => new { cp.IdCarrinho, cp.IdProduto });
         modelBuilder.Entity<CarrinhoProduto>()
-            .HasOne(cp => cp.Compra)
+            .HasOne(cp => cp.Carrinho)
             .WithMany(c => c.ProdutosCarrinho)
-            .HasForeignKey(cp => cp.IdCompra);
+            .HasForeignKey(cp => cp.IdCarrinho);
         modelBuilder.Entity<CarrinhoProduto>()
             .HasOne(cp => cp.Produto)
             .WithMany(p => p.ProdutosCarrinho)

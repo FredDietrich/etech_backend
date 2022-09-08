@@ -8,4 +8,7 @@ public class Carrinho
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdCarrinho { get; set; }
+
+    public ICollection<CarrinhoProduto>? ProdutosCarrinho { get; set; }
+
 }

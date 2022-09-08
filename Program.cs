@@ -25,6 +25,4 @@ app.UseMiddleware<BasicAuthMiddleware>();
 
 app.MapControllers();
 
-app.UseHttpsRedirection();
-
 app.Run();

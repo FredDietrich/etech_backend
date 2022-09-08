@@ -89,6 +89,7 @@ namespace etech_backend.Controllers
         // POST: api/Usuarios
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
             if (_context.Usuarios == null)
@@ -127,13 +128,13 @@ namespace etech_backend.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("autentica")]
+        [HttpPost("Autentica")]
         public async Task<IActionResult> Autentica([FromBody] Autenticacao autenticacaoModel)
         {
             var usuario = await _usuarioBLL.Autentica(autenticacaoModel.Login, autenticacaoModel.Senha);
 
             if (usuario == null)
-                return BadRequest(new { message = "Usuário ou senha inválidos" });
+                return Unauthorized(new { message = "Usuário ou senha inválidos" });
 
             return Ok(usuario);
         }
